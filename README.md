@@ -885,23 +885,26 @@ In MRI Ruby, block arguments [are converted to Procs](https://www.omniref.com/ru
 
 ```
 $ ruby -v code/proc-and-block/proc-call-vs-yield.rb
-ruby 2.2.3p173 (2015-08-18 revision 51636) [x86_64-darwin15]
+ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin16]
+Warming up --------------------------------------
+          block.call   110.430k i/100ms
+       block + yield   116.372k i/100ms
+      block argument   119.172k i/100ms
+       Proc.new.call    98.071k i/100ms
+               yield   250.011k i/100ms
 Calculating -------------------------------------
-          block.call    41.978k i/100ms
-       block + yield    42.674k i/100ms
-      block argument    41.722k i/100ms
-               yield    62.681k i/100ms
--------------------------------------------------
-          block.call    842.581k (±12.5%) i/s -      4.114M
-       block + yield    941.468k (±11.7%) i/s -      4.651M
-      block argument      1.043M (± 7.1%) i/s -      5.215M
-               yield      3.828M (±11.3%) i/s -     18.930M
+          block.call      1.627M (± 3.2%) i/s -      8.172M in   5.027708s
+       block + yield      1.763M (± 6.7%) i/s -      8.844M in   5.041188s
+      block argument      1.902M (± 4.7%) i/s -      9.534M in   5.024680s
+       Proc.new.call      1.573M (± 3.4%) i/s -      7.944M in   5.057020s
+               yield      8.784M (± 5.3%) i/s -     44.002M in   5.024362s
 
 Comparison:
-               yield:  3828436.1 i/s
-      block argument:  1042509.6 i/s - 3.67x slower
-       block + yield:   941467.7 i/s - 4.07x slower
-          block.call:   842581.2 i/s - 4.54x slower
+               yield:  8783625.5 i/s
+      block argument:  1901707.7 i/s - 4.62x  slower
+       block + yield:  1763329.4 i/s - 4.98x  slower
+          block.call:  1627044.5 i/s - 5.40x  slower
+       Proc.new.call:  1572696.3 i/s - 5.59x  slower
 ```
 
 
