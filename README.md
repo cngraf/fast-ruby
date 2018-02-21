@@ -887,24 +887,27 @@ In MRI Ruby, block arguments [are converted to Procs](https://www.omniref.com/ru
 $ ruby -v code/proc-and-block/proc-call-vs-yield.rb
 ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin16]
 Warming up --------------------------------------
-          block.call   110.430k i/100ms
-       block + yield   116.372k i/100ms
-      block argument   119.172k i/100ms
-       Proc.new.call    98.071k i/100ms
-               yield   250.011k i/100ms
+          block.call   109.344k i/100ms
+       block + yield   117.294k i/100ms
+      block argument   110.981k i/100ms
+       Proc.new.call   100.308k i/100ms
+               yield   248.516k i/100ms
+yield + block_given?   227.967k i/100ms
 Calculating -------------------------------------
-          block.call      1.627M (± 3.2%) i/s -      8.172M in   5.027708s
-       block + yield      1.763M (± 6.7%) i/s -      8.844M in   5.041188s
-      block argument      1.902M (± 4.7%) i/s -      9.534M in   5.024680s
-       Proc.new.call      1.573M (± 3.4%) i/s -      7.944M in   5.057020s
-               yield      8.784M (± 5.3%) i/s -     44.002M in   5.024362s
+          block.call      1.680M (± 3.7%) i/s -      8.419M in   5.018107s
+       block + yield      1.806M (± 4.2%) i/s -      9.032M in   5.010678s
+      block argument      1.952M (± 3.6%) i/s -      9.766M in   5.010771s
+       Proc.new.call      1.581M (± 4.0%) i/s -      7.924M in   5.019930s
+               yield      8.399M (± 6.0%) i/s -     41.999M in   5.020110s
+yield + block_given?      7.538M (± 5.7%) i/s -     37.615M in   5.006673s
 
 Comparison:
-               yield:  8783625.5 i/s
-      block argument:  1901707.7 i/s - 4.62x  slower
-       block + yield:  1763329.4 i/s - 4.98x  slower
-          block.call:  1627044.5 i/s - 5.40x  slower
-       Proc.new.call:  1572696.3 i/s - 5.59x  slower
+               yield:  8399232.4 i/s
+yield + block_given?:  7538346.2 i/s - same-ish: difference falls within error
+      block argument:  1951712.8 i/s - 4.30x  slower
+       block + yield:  1805954.0 i/s - 4.65x  slower
+          block.call:  1680210.7 i/s - 5.00x  slower
+       Proc.new.call:  1581264.9 i/s - 5.31x  slower
 ```
 
 
